@@ -30,20 +30,29 @@ import clsx from 'clsx';
 import { useState } from 'react';
 import { RouteComponentProps, withRouter, Switch, Route } from 'react-router';
 import { DataTable, MovieForm, Suggestion } from '../../components';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+    },
+  });
 
 const drawerwidth = 240; // width for sideNav drawer 
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            display: 'flex'
+            display: 'flex',
+            // backgroundColor: 'black'
         },
         appBar: {
             transition: theme.transitions.create(['margin', 'width'], {
                 easing: theme.transitions.easing.sharp,
                 duration: theme.transitions.duration.leavingScreen
 
-            })
+            }),
+            backgroundColor: 'black'
         },
         appBarShift: {
             width: `calc(100% - ${drawerwidth}px)`,
@@ -52,6 +61,7 @@ const useStyles = makeStyles((theme: Theme) =>
                 easing: theme.transitions.easing.easeOut,
                 duration: theme.transitions.duration.enteringScreen
             })
+            
         },
         menuButton: {
             marginRight: theme.spacing(2)
@@ -72,7 +82,10 @@ const useStyles = makeStyles((theme: Theme) =>
             padding: theme.spacing(0, 1),
             // required for content to display below the AppBar
             ...theme.mixins.toolbar,
-            justifyContent: 'flex-end'
+            justifyContent: 'flex-end',
+            // backgroundColor: 'black',
+        
+            
         },
         content: {
             flexGrow: 1,
@@ -92,10 +105,12 @@ const useStyles = makeStyles((theme: Theme) =>
             marginLeft: 0
         },
         toolbar: {
-            display: 'flex'
+            display: 'flex',
+            color: 'white'
         },
         toolbarButton: {
-            marginLeft: 'auto'
+            marginLeft: 'auto',
+            color: 'white'
         }
     })
 )
@@ -143,78 +158,78 @@ export const Dashboard = withRouter((props: DashProps) => {
     ];
 
     return (
-        <div className={classes.root}>
-            <CssBaseline />
-            <AppBar
-                position='fixed'
-                className={clsx(classes.appBar, {
-                    [classes.appBarShift]: open
-                })}
-            >
-                <Toolbar className={classes.toolbar}>
-                    <IconButton
-                        color="inherit"
-                        aria-label='open drawer'
-                        onClick={handleDrawerOpen}
-                        edge="start"
-                        className={clsx(classes.menuButton, open && classes.hide)}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography variant='h6' noWrap>
-                        Dashboard
-                    </Typography>
-                    <Button className={classes.toolbarButton} onClick={handleDialogClickOpen}>Create New Movie</Button>
-
-                    {/*Dialog Pop Up begin */}
-                    <Dialog open={dialogOpen} onClose={handleDialogClickClose} aria-labelledby="form-dialog-title">
-                        <DialogTitle id="form-dialog-title">Add New Movie</DialogTitle>
-                        <DialogContent>
-                            <DialogContentText>Add A New Movie</DialogContentText>
-                            <MovieForm />
-                        </DialogContent>
-                        <DialogActions>
-                            <Button onClick={handleDialogClickClose} color="primary">Cancel</Button>
-                            <Button onClick={handleDialogClickClose} color="primary">Done</Button>
-                        </DialogActions>
-
-                    </Dialog>
-                </Toolbar>
-            </AppBar>
-            <MUIDrawer
-                className={classes.drawer}
-                variant="persistent"
-                anchor="left"
-                open={open}
-                classes={{
-                    paper: classes.drawerPaper
-                }}
-            >
-                <div className={classes.drawerHeader}>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-                    </IconButton>
-                </div>
-                <Divider />
-                <List>
-                    {itemsList.map((item) => {
-                        const { text, onClick } = item;
-                        return (
-                            <ListItem button key={text} onClick={onClick}>
-                                <ListItemText primary={text} />
-                            </ListItem>
-                        );
+        <ThemeProvider theme={darkTheme}>
+            <div className={classes.root}>
+                <CssBaseline />
+                <AppBar
+                    position='fixed'
+                    className={clsx(classes.appBar, {
+                        [classes.appBarShift]: open
                     })}
-                </List>
-            </MUIDrawer>
-            <main className={clsx(classes.content, {
-                [classes.contentShift]: open,
-            })}>
-                <div className={classes.drawerHeader} />
-                <Suggestion />
-                <DataTable />
-            </main>
-        </div>
+                >
+                    <Toolbar className={classes.toolbar}>
+                        <IconButton
+                            color="inherit"
+                            aria-label='open drawer'
+                            onClick={handleDrawerOpen}
+                            edge="start"
+                            className={clsx(classes.menuButton, open && classes.hide)}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <Typography variant='h6' noWrap>
+                            My Movies 
+                        </Typography>
+                        <Button className={classes.toolbarButton} onClick={handleDialogClickOpen}>Create New Movie</Button>
+                        {/*Dialog Pop Up begin */}
+                        <Dialog open={dialogOpen} onClose={handleDialogClickClose} aria-labelledby="form-dialog-title">
+                            <DialogTitle id="form-dialog-title">Add New Movie</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText>Add A New Movie</DialogContentText>
+                                <MovieForm />
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={handleDialogClickClose} color="primary">Cancel</Button>
+                                <Button onClick={handleDialogClickClose} color="primary">Done</Button>
+                            </DialogActions>
+                        </Dialog>
+                    </Toolbar>
+                </AppBar>
+                <MUIDrawer
+                    className={classes.drawer}
+                    variant="persistent"
+                    anchor="left"
+                    open={open}
+                    classes={{
+                        paper: classes.drawerPaper
+                    }}
+                >
+                    <div className={classes.drawerHeader}>
+                        <IconButton onClick={handleDrawerClose}>
+                            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                        </IconButton>
+                    </div>
+                    <Divider />
+                    <List>
+                        {itemsList.map((item) => {
+                            const { text, onClick } = item;
+                            return (
+                                <ListItem button key={text} onClick={onClick}>
+                                    <ListItemText primary={text} />
+                                </ListItem>
+                            );
+                        })}
+                    </List>
+                </MUIDrawer>
+                <main className={clsx(classes.content, {
+                    [classes.contentShift]: open,
+                })}>
+                    <div className={classes.drawerHeader} />
+                    <Suggestion />
+                    <DataTable />
+                </main>
+            </div>
+        </ThemeProvider>
     )
 })
 

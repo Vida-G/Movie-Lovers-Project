@@ -7,7 +7,9 @@ import secrets
 from flask_login import LoginManager, UserMixin
 from flask_marshmallow import Marshmallow
 
-
+# flask db init
+# flask db migrate -m "Initial migration."
+# flask db upgrade
 db = SQLAlchemy()
 login_manager = LoginManager()
 ma = Marshmallow()

@@ -39,7 +39,7 @@ export const Suggestion = () => {
         >
             {itemData.map((item) => {
                 const cols = item.featured ? 2 : 1;
-                const rows = item.featured ? 2 : 1;
+                const rows = item.featured ? 2 : 1;           
 
                 return (
                     <ImageListItem key={item.img} cols={cols} rows={rows}>
