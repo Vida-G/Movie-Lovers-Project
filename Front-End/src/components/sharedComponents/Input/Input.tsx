@@ -4,6 +4,8 @@ import { TextField } from '@material-ui/core';
 interface inputType {
     name: string;
     placeholder: string;
+    value?: string;
+    onChange?: any;
 }
 
 export const Input = forwardRef((props: inputType, ref) => {

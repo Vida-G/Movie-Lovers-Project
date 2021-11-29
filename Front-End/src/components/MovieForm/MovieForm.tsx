@@ -9,9 +9,12 @@ import { server_calls } from '../../api';
 
 import { useGetData } from '../../custom-hooks';
 import Rating from '@mui/material/Rating';
+import { visuallyHidden } from '@mui/utils';
+import { TextField } from '@material-ui/core';
 
 interface MovieFormProps {
     id?: string;
+    movieInfo?: {name: string; genre: string; year: string; rating: number};
     data?: {}
 }
 
@@ -28,7 +31,11 @@ export const MovieForm = (props: MovieFormProps) => {
     const name = useSelector<MovieState>(state => state.name)
     const { register, handleSubmit } = useForm({})
     const [value, setValue] = React.useState<number | null>(2);
-
+    const [movieName, setMovieName] = React.useState<string | null>('');
+    console.log('Update starts here')
+    console.log(props)
+    // setValue(props.movieInfo.rating || 2)
+    console.log('Update ends here')
     const onSubmit = async (data: any, event: any) => {
         console.log(props.id)
         console.log(props)
@@ -39,17 +46,20 @@ export const MovieForm = (props: MovieFormProps) => {
             window.location.reload()
             event.target.reset();
         } else {
-            dispatch(chooseName(data.name))
+            data.rating = value
+            data.name = movieName
+            // dispatch(chooseName(data.name))
             dispatch(chooseGenre(data.genre))
             dispatch(chooseYear(data.year))
             dispatch(chooseRating(data.rating))
-            // console.log('rating added')
-            // console.log(data)
-            // console.log(event)
-            // console.log(value)
+            console.log('rating added')
+            console.log(data)
+            console.log(event)
+            console.log(value)
+            console.log(store.getState())
             await server_calls.create(store.getState())
             var x = await server_calls.getSuggestions()
-            console.log(x)
+            // console.log(x)
             window.location.reload()
         }
     }
@@ -67,30 +77,18 @@ export const MovieForm = (props: MovieFormProps) => {
                 </div>
                 <div>
                     <label htmlFor="year">Year</label>
-                    <Input {...register('year')} name="year" placeholder="Year" />
+                    <Input {...register('year')} name="year" placeholder="Year"  />
                 </div>
                 <div>
                     <label htmlFor="rating">Rating</label>
-                    <Input
-                        {...register('rating')}                        
-                        name="rating"
-                        placeholder="0"
-                    />
-                    {/* <input
-                        {...register('rating')}                        
-                        name="rating"
-                        type="number"
-                        value={value || 0}
-                        hidden
-                        readOnly
-                    />
                     <Rating
+                        {...register("rating")}
                         name="rating"
                         value={value || 0}
                         onChange={(_, newValue) => {
                             setValue(newValue);
                         }}
-                    /> */}
+                    />
                 </div>
                 <Button type='submit'>Submit</Button>
             </form>

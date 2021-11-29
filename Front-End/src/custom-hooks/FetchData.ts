@@ -1,6 +1,14 @@
 import { useState, useEffect } from 'react';
 import { server_calls } from '../api';
 
+// interface movieDataItem {
+//     id?: string;
+//     genre?: string;
+//     name?: string;
+//     year?: string;
+//     rating?: number; 
+// }
+
 export const useGetData = () => {
     const [movieData, setData] = useState<any>([]);
 
@@ -11,6 +19,10 @@ export const useGetData = () => {
     useEffect(() => {
         handleDataFetch();
     }, []);
+    let movieDataDict = {};
+    // movieData.forEach(l => {
+    //     movieDataDict[l['id']] = {'genre': l['genre'], 'name': l['name'], 'rating': l['rating'], 'year': l['year']};
+    // });
     return { movieData, getData: handleDataFetch }
 
 }

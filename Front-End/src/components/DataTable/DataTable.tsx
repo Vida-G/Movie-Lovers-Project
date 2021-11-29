@@ -38,7 +38,7 @@ const columns: GridColDef[] = [
     },
     {
         field: 'rating',
-        headerName: 'rating',
+        headerName: 'Rating',
         width: 200
     },
 ];
@@ -80,7 +80,7 @@ export const DataTable = () => {
 
 
     return (
-        <div style={{ height: 400, width: '100%' }}>
+        <div style={{ height: 400, width: '100%', color: 'white' }}>
             <h2>Movies</h2>
             <DataGrid
                 rows={movieData}
@@ -90,6 +90,7 @@ export const DataTable = () => {
                 onSelectionModelChange={(item) => {
                     setSelectionModel(item)
                 }}
+                style={{ color: 'white', backgroundColor: 'black' }}
                 {...movieData}
             />
 

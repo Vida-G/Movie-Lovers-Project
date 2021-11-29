@@ -21,7 +21,7 @@ def row2dict(row):
 
 
 def movie_suggestion(current_user_token):
-    print(f'my current token is: {vars(current_user_token)}')
+    # print(f'my current token is: {vars(current_user_token)}')
     movies = Movie.query.filter_by(user_token = vars(current_user_token)['token']).filter(Movie.rating >= 3).order_by(desc(Movie.rating))    
     # .limit(3)
     # print(f'movies are {vars(movies)}')
