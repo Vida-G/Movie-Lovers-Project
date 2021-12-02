@@ -20,10 +20,10 @@ export const useGetData = () => {
         handleDataFetch();
     }, []);
     let movieDataDict = {};
-    // movieData.forEach(l => {
-    //     movieDataDict[l['id']] = {'genre': l['genre'], 'name': l['name'], 'rating': l['rating'], 'year': l['year']};
-    // });
-    return { movieData, getData: handleDataFetch }
+    movieData.forEach(l => {
+        movieDataDict[l['id']] = {'genre': l['genre'], 'name': l['name'], 'rating': l['rating'], 'year': l['year']};
+    });
+    return { movieData, movieDataDict, getData: handleDataFetch }
 
 }
 

@@ -59,7 +59,7 @@ const columns: GridColDef[] = [
 
 export const DataTable = () => {
 
-    let { movieData, getData } = useGetData();
+    let { movieData, movieDataDict, getData } = useGetData();
     let [open, setOpen] = useState(false);
     let [gridData, setData] = useState<gridData>({ id: '' });
     const [selectionModel, setSelectionModel] = useState<any>([])
@@ -104,7 +104,7 @@ export const DataTable = () => {
                     {/* <DialogContentText>Update Movie</DialogContentText>
                 <MovieForm id={gridData.id!}/> */}
                     <DialogContentText>Movie id: {selectionModel}</DialogContentText>
-                    <MovieForm id={`${selectionModel}`} />
+                    <MovieForm id={`${selectionModel}`} movieInfo={movieDataDict[`${selectionModel}`]}/>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">Cancel</Button>

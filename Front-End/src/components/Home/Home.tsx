@@ -5,7 +5,6 @@ import movie_image from '../../assets/images/movie_home3.gif';
 import { Link } from 'react-router-dom';
 import { AuthCheck } from 'reactfire';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-// import Grid from '@mui/material/Grid';
 
 interface Props {
     title: string;
@@ -13,15 +12,15 @@ interface Props {
 
 const darkTheme = createTheme({
     palette: {
-      mode: 'dark',
+        mode: 'dark',
     },
-  });
+});
 
 const useStyles = makeStyles({
     root: {
         padding: '0',
         margin: '0'
-        
+
     },
     navbar_container: {
         display: 'flex',
@@ -112,6 +111,10 @@ export const Home = (props: Props) => {
                 <div className={classes.main_text}>
                     <h1>{props.title}</h1>
                     <Button color='primary' variant="contained">Click Here!</Button>
+                    <div className="parent-mover" id="parent-mover">
+                        <div className="child-mover" id="child-mover">
+                        </div>
+                    </div>
                 </div>
             </main>
         </div>

@@ -46,9 +46,9 @@ export const Suggestion = () => {
                                         display: 'flex',
                                         padding: 10,
                                         borderRadius: '8px',
-                                        backgroundImage: `url(${item.img || "../public/book.png"})`
+                                        backgroundImage: `url(${item.img || "../public/book.png"})`,
+                                        backgroundSize: 'cover'
                                     }}
-
                                 >
                                     <div
                                         style={{

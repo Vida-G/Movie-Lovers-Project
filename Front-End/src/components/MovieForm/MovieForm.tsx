@@ -26,7 +26,7 @@ interface MovieState {
 export const MovieForm = (props: MovieFormProps) => {
 
     const dispatch = useDispatch();
-    let { movieData, getData } = useGetData();
+    let { movieData, movieDataDict, getData } = useGetData();
     const store = useStore()
     const name = useSelector<MovieState>(state => state.name)
     const { register, handleSubmit } = useForm({})
@@ -47,8 +47,7 @@ export const MovieForm = (props: MovieFormProps) => {
             event.target.reset();
         } else {
             data.rating = value
-            data.name = movieName
-            // dispatch(chooseName(data.name))
+            dispatch(chooseName(data.name))
             dispatch(chooseGenre(data.genre))
             dispatch(chooseYear(data.year))
             dispatch(chooseRating(data.rating))
@@ -69,7 +68,7 @@ export const MovieForm = (props: MovieFormProps) => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
                     <label htmlFor="name">Movie Name</label>
-                    <Input {...register('name')} name="name" placeholder='Name' />
+                    <Input {...register('name')} name="name" placeholder='Name'/>
                 </div>
                 <div>
                     <label htmlFor="genre">Genre</label>
