@@ -26,21 +26,21 @@ interface MovieState {
 export const MovieForm = (props: MovieFormProps) => {
 
     const dispatch = useDispatch();
-    let { movieData, movieDataDict, getData } = useGetData();
+    let { movieData, getData } = useGetData();
     const store = useStore()
     const name = useSelector<MovieState>(state => state.name)
     const { register, handleSubmit } = useForm({})
     const [value, setValue] = React.useState<number | null>(2);
     const [movieName, setMovieName] = React.useState<string | null>('');
-    console.log('Update starts here')
-    console.log(props)
-    // setValue(props.movieInfo.rating || 2)
-    console.log('Update ends here')
     const onSubmit = async (data: any, event: any) => {
-        console.log(props.id)
-        console.log(props)
+
 
         if (props.id!) {
+            data.rating = value
+            dispatch(chooseName(data.name))
+            dispatch(chooseGenre(data.genre))
+            dispatch(chooseYear(data.year))
+            dispatch(chooseRating(data.rating))
             await server_calls.update(props.id!, data)
             console.log(`Updated:${data} ${props.id}`)
             window.location.reload()
@@ -58,7 +58,6 @@ export const MovieForm = (props: MovieFormProps) => {
             console.log(store.getState())
             await server_calls.create(store.getState())
             var x = await server_calls.getSuggestions()
-            // console.log(x)
             window.location.reload()
         }
     }
@@ -68,7 +67,7 @@ export const MovieForm = (props: MovieFormProps) => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
                     <label htmlFor="name">Movie Name</label>
-                    <Input {...register('name')} name="name" placeholder='Name'/>
+                    <Input {...register('name')} name="name" placeholder='Name' />
                 </div>
                 <div>
                     <label htmlFor="genre">Genre</label>

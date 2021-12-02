@@ -59,7 +59,7 @@ const columns: GridColDef[] = [
 
 export const DataTable = () => {
 
-    let { movieData, movieDataDict, getData } = useGetData();
+    let { movieData, getData } = useGetData();
     let [open, setOpen] = useState(false);
     let [gridData, setData] = useState<gridData>({ id: '' });
     const [selectionModel, setSelectionModel] = useState<any>([])

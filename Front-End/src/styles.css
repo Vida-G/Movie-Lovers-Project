@@ -76,7 +76,7 @@ h3 {
   justify-content: center;
   align-items: center;
   background: #fff;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
 .parent-mover {
@@ -90,7 +90,7 @@ h3 {
 
 .parent-mover > div {
   height: 200px;
-  width: 4850px;
+  width: 4584px;
   background: url(assets/images/animation.png);
   position: absolute;
   top: 0;
@@ -104,6 +104,6 @@ h3 {
 
 @keyframes moveSlideshow {
   100% { 
-    transform: translateX(-2425px);  
+    transform: translateX(-2292px);  
   }
 }
