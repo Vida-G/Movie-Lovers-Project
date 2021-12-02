@@ -1,6 +1,6 @@
-const token = '12e746a4d56dda07154cd7235b1e86811c1f2a5e9b7ff546';
+const token = '482ce1c5707620c073e1fff0669c2af12e427d5253a2432e';
 
-const api_prefix = 'http://127.0.0.1:5000'
+const api_prefix = 'https://movie-lovers-ml.herokuapp.com'
 
 
 export const server_calls = {

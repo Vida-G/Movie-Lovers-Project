@@ -32,11 +32,11 @@ import { RouteComponentProps, withRouter, Switch, Route } from 'react-router';
 import { DataTable, MovieForm, Suggestion } from '../../components';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const darkTheme = createTheme({
-    palette: {
-      mode: 'dark',
-    },
-  });
+// const darkTheme = createTheme({
+//     palette: {
+//       mode: 'dark',
+//     },
+//   });
 
 const drawerwidth = 240; // width for sideNav drawer 
 
@@ -110,7 +110,8 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         toolbarButton: {
             marginLeft: 'auto',
-            color: 'white'
+            color: 'white',
+            fontSize: '18px'
         }
     })
 )
@@ -158,7 +159,6 @@ export const Dashboard = withRouter((props: DashProps) => {
     ];
 
     return (
-        <ThemeProvider theme={darkTheme}>
             <div className={classes.root}>
                 <CssBaseline />
                 <AppBar
@@ -178,7 +178,7 @@ export const Dashboard = withRouter((props: DashProps) => {
                             <MenuIcon />
                         </IconButton>
                         <Typography variant='h6' noWrap>
-                            My Movies 
+                            <h3>My Movies</h3>
                         </Typography>
                         <Button className={classes.toolbarButton} onClick={handleDialogClickOpen}>Create New Movie</Button>
                         {/*Dialog Pop Up begin */}
@@ -229,7 +229,6 @@ export const Dashboard = withRouter((props: DashProps) => {
                     <DataTable />
                 </main>
             </div>
-        </ThemeProvider>
     )
 })
 

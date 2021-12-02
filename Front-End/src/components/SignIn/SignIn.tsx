@@ -101,7 +101,7 @@ export const SignIn = withRouter((props: SignInProps) => {
     return (
         <div>
             <Container maxWidth='sm' className={classes.containerStyle}>
-                <Typography className={classes.typographyStyle}>Sign In Below</Typography>
+                <Typography className={classes.typographyStyle}>Sign In Here</Typography>
                 <form>
                     <div>
                         <label htmlFor="email">Email</label>
@@ -111,13 +111,13 @@ export const SignIn = withRouter((props: SignInProps) => {
                         <label htmlFor="password">Password</label>
                         <Input name="password" placeholder='Place Password Here' />
                     </div>
-                    <Button type='submit' variant='contained' color='primary'>Submit</Button>
+                    <Button type='submit' style={{marginTop: '25px'}} variant='contained' color='primary'>Login</Button>
                 </form>
 
                 <AuthCheck fallback={
                     <Button className={classes.googleButton} onClick={sign_in}>Sign In With Google</Button>
                 }>
-                    <Button variant='contained' color='secondary' onClick={sign_out}>Sign Out</Button>
+                    <Button style={{marginTop: '25px'}} variant='contained' color='secondary' onClick={sign_out}>Sign Out</Button>
                 </AuthCheck>
                 <Snackbar message={'Success'} open={open} autoHideDuration={6000} onClose={handleSnackClose} className={classes.snackBar}>
                     <Alert onClose={handleSnackClose} severity="success">

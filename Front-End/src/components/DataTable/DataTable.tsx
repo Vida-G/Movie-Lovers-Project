@@ -19,7 +19,7 @@ const columns: GridColDef[] = [
     {
         field: 'id',
         headerName: 'ID',
-        width: 100
+        width: 92
     },
     {
         field: 'name',
@@ -80,8 +80,10 @@ export const DataTable = () => {
 
 
     return (
-        <div style={{ height: 400, width: '100%', color: 'white' }}>
+        <div style={{ height: 400, width: '100%'}}>
+            <div style={{padding: '30px 50px 8px 20px', color: 'grey', fontSize: '18px'}}>
             <h2>Movies</h2>
+            </div>          
             <DataGrid
                 rows={movieData}
                 columns={columns}
@@ -90,12 +92,13 @@ export const DataTable = () => {
                 onSelectionModelChange={(item) => {
                     setSelectionModel(item)
                 }}
-                style={{ color: 'white', backgroundColor: 'black' }}
+                style={{ color: 'black', backgroundColor: 'white', fontSize: '16px' }}
                 {...movieData}
             />
-
-            <Button onClick={handleOpen}>Update</Button>
-            <Button variant="contained" color="secondary" onClick={deleteData}>Delete</Button>
+            <div style={{ padding: '25px 50px 50px 25px', display: 'flex'}}>
+                <Button variant="contained" onClick={handleOpen}>Update</Button>
+                <Button style={{marginLeft: '25px'}} variant="contained" color="secondary" size="medium" onClick={deleteData}>Delete</Button>
+            </div>
 
             {/*Dialog Pop Up begin */}
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
@@ -104,7 +107,7 @@ export const DataTable = () => {
                     {/* <DialogContentText>Update Movie</DialogContentText>
                 <MovieForm id={gridData.id!}/> */}
                     <DialogContentText>Movie id: {selectionModel}</DialogContentText>
-                    <MovieForm id={`${selectionModel}`} movieInfo={movieDataDict[`${selectionModel}`]}/>
+                    <MovieForm id={`${selectionModel}`} />
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">Cancel</Button>

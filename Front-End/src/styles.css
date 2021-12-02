@@ -59,9 +59,10 @@ h3 {
 }
 
 .app {
-  width: 1400px;
+  width: 100%;
   height: 400px;
-  background: #303030;
+  /* background: #303030; */
+  background: #7b7676;
   overflow-y: scroll;
 }
 

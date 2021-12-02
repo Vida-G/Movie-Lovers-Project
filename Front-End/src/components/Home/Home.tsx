@@ -10,11 +10,11 @@ interface Props {
     title: string;
 }
 
-const darkTheme = createTheme({
-    palette: {
-        mode: 'dark',
-    },
-});
+// const darkTheme = createTheme({
+//     palette: {
+//         mode: 'dark',
+//     },
+// });
 
 const useStyles = makeStyles({
     root: {
@@ -28,7 +28,8 @@ const useStyles = makeStyles({
         backgroundColor: 'black'
     },
     logo: {
-        margin: '0 0 0 0.45rem',
+        margin: '0 0 0 1rem',
+        // margin: '0 0 0 0.45rem',
         paddingTop: '15px',
         textTransform: 'uppercase',
         fontSize: '23px'
@@ -38,6 +39,7 @@ const useStyles = makeStyles({
     // },
     logo_navigation: {
         // textTransform: 'uppercase',
+        // margin: '0 0 0 0.45rem',
         margin: '0 0 0 0.45rem',
         textDecoration: 'none',
         fontSize: '20px',
@@ -48,7 +50,8 @@ const useStyles = makeStyles({
         display: 'block',
         padding: '1em',
         color: 'white',
-        textDecoration: 'none'
+        textDecoration: 'none',
+        marginLeft: '10px'
     },
     navigation: {
         display: 'flex',
@@ -64,11 +67,18 @@ const useStyles = makeStyles({
         backgroundPosition: 'center',
         position: 'absolute'
     },
-    main_text: {
+    main_demo: {
         textAlign: 'center',
         position: 'relative',
-        top: '45%',
+        top: '30%',
         color: 'white'
+    },
+    welcome_note: {
+        textAlign: 'center',
+        position: 'relative',
+        color: 'white',
+        top: '10%',
+        fontSize: '19px'
     }
 
 });
@@ -108,13 +118,20 @@ export const Home = (props: Props) => {
                 </div>
             </nav>
             <main className={classes.main}>
-                <div className={classes.main_text}>
-                    <h1>{props.title}</h1>
-                    <Button color='primary' variant="contained">Click Here!</Button>
+                <div className={classes.welcome_note}>
+                   <h1>Welcome Movie Lovers!</h1> 
+                   <h2>We help you to find your favorite movies.</h2>
+                   <h2>Sign in and add your favorite movies to your account.</h2>
+                   <h2>You can rate and update movies.</h2>
+                </div>
+                <div className={classes.main_demo}>
+                    {/* <h1>{props.title}</h1> */}
+                    {/* <Button color='primary' variant="contained">Click Here!</Button> */}
                     <div className="parent-mover" id="parent-mover">
                         <div className="child-mover" id="child-mover">
                         </div>
                     </div>
+
                 </div>
             </main>
         </div>
