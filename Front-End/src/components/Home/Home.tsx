@@ -70,14 +70,15 @@ const useStyles = makeStyles({
     main_demo: {
         textAlign: 'center',
         position: 'relative',
-        top: '30%',
+        height: '30%',
         color: 'white'
     },
     welcome_note: {
         textAlign: 'center',
         position: 'relative',
         color: 'white',
-        top: '10%',
+        height: '60%',
+        top: '25%',
         fontSize: '19px'
     }
 
@@ -120,9 +121,9 @@ export const Home = (props: Props) => {
             <main className={classes.main}>
                 <div className={classes.welcome_note}>
                    <h1>Welcome Movie Lovers!</h1> 
-                   <h2>We help you to find your favorite movies.</h2>
-                   <h2>Sign in and add your favorite movies to your account.</h2>
-                   <h2>You can rate and update movies.</h2>
+                   <h2>Let's find the next movie you truely enjoy ...</h2>
+                   {/* <h2>Sign in and add your favorite movies to your account.</h2>
+                   <h2>You can rate and update movies.</h2> */}
                 </div>
                 <div className={classes.main_demo}>
                     {/* <h1>{props.title}</h1> */}
