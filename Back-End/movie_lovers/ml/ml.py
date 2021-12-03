@@ -30,21 +30,20 @@ def row2dict(row):
 
 
 def movie_suggestion(current_user_token):
-    # print(f'my current token is: {vars(current_user_token)}')
     movies = Movie.query.filter_by(user_token = vars(current_user_token)['token']).filter(Movie.rating >= 3).order_by(desc(Movie.rating))    
-    # .limit(3)
-    # print(f'movies are {vars(movies)}')
     list_suggestions = []
+    rated_movies = set()
     for movie in movies:
         movie_factors = learn.model.i_weight.weight
         movie_dict = row2dict(movie)
         movie_title = f'{movie_dict["name"]} ({movie_dict["year"]})'
-        # print(type(learn.dls), type(learn.dls.classes['title']))
+        rated_movies.add(movie_title)
         idx = learn.dls.classes['title'].o2i[movie_title]
-        # print(movie_title, idx)
         distances = nn.CosineSimilarity(dim=1)(movie_factors, movie_factors[idx][None])
         sorted_idx = distances.argsort(descending=True)
-        for i in range(0,10):
+        i = 0
+        list_suggestions.append([])
+        while i < 20:
             idx = sorted_idx[i]
             print(f'idx: {idx} {type(idx)}')
             print(learn.dls.classes['title'][idx])
@@ -52,8 +51,21 @@ def movie_suggestion(current_user_token):
             movie_name = learn.dls.classes['title'][idx]
             print(movie_link_dict.get(movie_name, '-1'))
             if movie_name == '#na#':
+                i += 1
                 continue
-            list_suggestions.append((movie_name, str(movie_link_dict.get(movie_name, '-1'))))
-            # print(learn.dls.classes['title'][idx])
-    print(len(list(set(list_suggestions))))
-    return list(set(list_suggestions))[0:10]
+            list_suggestions[-1].append((movie_name, str(movie_link_dict.get(movie_name, '-1'))))
+            i += 1
+        suggected_movie_count = 0
+        suggested_movies = []
+        movie_index = 0
+        print('Before selecting top movies')
+        while suggected_movie_count < 10:
+            print(f'{movie_index} In selecting top movies: {suggected_movie_count}')
+            for i in range(len(list_suggestions)):
+                if list_suggestions[i][movie_index][0] not in rated_movies and list_suggestions[i][movie_index] not in suggested_movies:
+                    suggested_movies.append(list_suggestions[i][movie_index])
+                    suggected_movie_count += 1
+            movie_index += 1
+
+    print(suggested_movies)
+    return suggested_movies[:10]

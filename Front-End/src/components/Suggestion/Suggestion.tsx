@@ -67,7 +67,7 @@ export class Suggestion extends React.Component {
     render() {
         return (
             <>
-                <div className="app" id="suggestions">
+                <div className="app" id="suggestions" style={{borderRadius: '10px'}}>
                     <h1 style={{ color: 'white' }}>Suggestions for You</h1>
                     <ul className="hs full">
                         {Array.from({ length: 10 }, (x, i) => i).map(index => {
