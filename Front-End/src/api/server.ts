@@ -8,7 +8,7 @@ const token = '482ce1c5707620c073e1fff0669c2af12e427d5253a2432e';
 const api_prefix = 'https://movie-lovers-ml.herokuapp.com'
 // const api_prefix = 'http://127.0.0.1:5000'
 
-const tmdb_api_key = '';
+const tmdb_api_key = '0b08fd20c61df62da09bb0c40c00ac6e';
 
 export const server_calls = {
     get: async () => {
